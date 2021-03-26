@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import ServerStatus from './components/ServerStatus';
+import User from './components/User';
 import axios from 'axios';
 
 interface AppProps {}
@@ -24,16 +25,15 @@ export class App extends Component<AppProps, AppState> {
         this.setState({
           online: true,
         });
-        console.log(response);
       }
     });
-    console.log(process.env.REACT_APP_USERNAME);
   }
 
   render() {
     return (
       <div className="App">
         <ServerStatus online={this.state.online} />
+        <User />
       </div>
     );
   }
