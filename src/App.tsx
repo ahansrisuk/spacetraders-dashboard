@@ -24,8 +24,10 @@ export class App extends Component<AppProps, AppState> {
         this.setState({
           online: true,
         });
+        console.log(response);
       }
     });
+    console.log(process.env.REACT_APP_USERNAME);
   }
 
   render() {
