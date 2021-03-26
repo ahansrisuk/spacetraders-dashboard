@@ -1,18 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import ServerStatus from '../../components/ServerStatus';
-import axios from 'axios';
-
-jest.mock('axios');
 
 test('displays online server status', () => {
-  render(<ServerStatus />);
-  axios.get.mockImplementation((request) => {
-    if (request.endsWith('status')) {
-      return Promise.resolve({
-        status: 'spacetraders is currently online and available to play',
-      });
-    }
-  });
-  const status = screen.getByText(/Server Status/);
-  expect(status).toBeInTheDocument();
+  render(<ServerStatus online={true} />);
+  const el = screen.getByText(/Server/i, { exact: false });
+  expect(el.classList).toContain('bg-green-400');
+});
+
+test('displays offline server status', () => {
+  render(<ServerStatus online={false} />);
+  const el = screen.getByText(/Server/i, { exact: false });
+  expect(el.classList).toContain('bg-red-400');
 });

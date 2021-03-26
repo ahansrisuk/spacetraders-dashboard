@@ -8,5 +8,6 @@
 @layer base {
   body {
     font-family: 'Roboto Mono', monospace;
+    @apply bg-gray-700 text-gray-50;
   }
 }
