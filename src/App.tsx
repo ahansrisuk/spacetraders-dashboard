@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import ServerStatus from './components/ServerStatus';
 import User from './components/User';
+import CreateUser from './components/CreateUser';
 import axios from 'axios';
 
 interface AppProps {}
@@ -32,6 +33,7 @@ export class App extends Component<AppProps, AppState> {
   render() {
     return (
       <div className="App">
+        <CreateUser></CreateUser>
         <ServerStatus online={this.state.online} />
         <User />
       </div>

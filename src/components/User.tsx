@@ -24,7 +24,8 @@ export class User extends Component<{}, UserState> {
       .get(
         `https://api.spacetraders.io/users/${process.env.REACT_APP_USERNAME}?token=${process.env.REACT_APP_TOKEN}`
       )
-      .then((response) => this.setState(response.data.user));
+      .then((response) => this.setState(response.data.user))
+      .catch((error) => console.log(error));
   }
   render() {
     return (
