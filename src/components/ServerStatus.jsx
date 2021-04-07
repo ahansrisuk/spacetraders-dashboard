@@ -1,8 +1,6 @@
-import { FunctionComponent } from 'react';
-interface StatusProps {
-  online: boolean;
-}
-export const ServerStatus: FunctionComponent<StatusProps> = ({ online }) => {
+import PropTypes from 'prop-types';
+
+const ServerStatus = ({ online }) => {
   let message = '';
   if (online) {
     message = 'Server is online';
@@ -19,6 +17,10 @@ export const ServerStatus: FunctionComponent<StatusProps> = ({ online }) => {
       {message}
     </span>
   );
+};
+
+ServerStatus.propTypes = {
+  online: PropTypes.bool,
 };
 
 export default ServerStatus;
