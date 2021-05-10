@@ -1,44 +1,38 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import ServerStatus from './components/ServerStatus';
 import User from './components/User';
 import CreateUser from './components/CreateUser';
 import axios from 'axios';
 
-interface AppProps {}
-interface AppState {
-  online: boolean;
-}
+function App() {
+  const [online, setOnline] = useState<boolean>(false);
+  const [user, setUser] = useState(null);
 
-export class App extends Component<AppProps, AppState> {
-  constructor(props: AppProps) {
-    super(props);
-    this.state = {
-      online: false,
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     axios.get('https://api.spacetraders.io/game/status').then((response) => {
       if (
         response.data.status ===
         'spacetraders is currently online and available to play'
       ) {
-        this.setState({
-          online: true,
-        });
+        setOnline(true);
       }
     });
-  }
+    // array param shows dependencies that useEffect will update on
+  }, []);
 
-  render() {
-    return (
-      <div className="App">
-        <CreateUser></CreateUser>
-        <ServerStatus online={this.state.online} />
-        <User />
-      </div>
+  const createUser = () => {
+    axios.get(
+      `https://api.spacetraders.io/users/${this.state.requestedUsername}`
     );
-  }
+  };
+
+  return (
+    <div className="App">
+      <CreateUser user={user}></CreateUser>
+      <ServerStatus online={online} />
+      <User />
+    </div>
+  );
 }
 
 export default App;
