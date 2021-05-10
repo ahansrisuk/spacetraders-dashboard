@@ -1,14 +1,8 @@
 import { FunctionComponent, useState } from 'react';
 import axios from 'axios';
 
-interface CreateUserState {
-  requestedUsername: string;
-  username: string;
-  token: string;
-}
-
 export const CreateUser: FunctionComponent = () => {
-  const [requestedUsername, setRequestedUsername] = useState('');
+  const [requestedUsername, setRequestedUsername] = useState<string>('');
 
   const createUser = () => {
     axios
