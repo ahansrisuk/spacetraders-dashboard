@@ -5,7 +5,7 @@ import CreateUser from './components/CreateUser';
 import axios from 'axios';
 
 function App() {
-  const [online, setOnline] = useState(false);
+  const [online, setOnline] = useState < boolean > false;
   const [user, setUser] = useState(null);
 
   useEffect(() => {
